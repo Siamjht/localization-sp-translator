@@ -21,14 +21,14 @@ class _MyAppState extends State<MyApp> {
   bool switchState = false;
   final Future<SharedPreferences> _sharedPreference = SharedPreferences.getInstance();
 
-  setLocal(String languageCode, bool switchState) async {
+  Future<void>setLocal(String languageCode, bool switchState) async {
     SharedPreferences sharedPreference = await _sharedPreference;
     sharedPreference.setString("languageCode", languageCode);
     sharedPreference.setBool('switchState', switchState);
     getLocal();
   }
 
-  getLocal() async {
+  Future<void>getLocal() async {
     SharedPreferences sharedPreference = await _sharedPreference;
     languageCode = sharedPreference.getString('languageCode') ?? 'en';
     switchState = sharedPreference.getBool('switchState') ?? false;
